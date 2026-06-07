@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>XHS Readonly Monitor Lite</title>
+    <meta
+      name="description"
+      content="Public-safe read-only CDP monitor helpers for inspecting Xiaohongshu feed cards and note metrics."
+    />
+    <style>
+      :root {
+        --bg: #f7f6f3;
+        --ink: #1d2329;
+        --muted: #66707c;
+        --panel: #ffffff;
+        --line: #dcd7cf;
+        --accent: #b3263b;
+        --accent-2: #176b54;
+        --focus: #1d5ea8;
+        --shadow: 0 18px 50px rgba(29, 35, 41, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        line-height: 1.55;
+      }
+
+      a {
+        color: var(--focus);
+      }
+
+      a:focus-visible {
+        outline: 3px solid var(--focus);
+        outline-offset: 3px;
+      }
+
+      .shell {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 28px;
+      }
+
+      header {
+        align-items: center;
+        display: flex;
+        gap: 18px;
+        justify-content: space-between;
+        padding: 16px 0 28px;
+      }
+
+      .brand {
+        display: grid;
+        gap: 2px;
+      }
+
+      .brand strong {
+        font-size: 18px;
+      }
+
+      .brand span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      nav a,
+      .button {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--ink);
+        display: inline-flex;
+        font-size: 14px;
+        font-weight: 650;
+        min-height: 40px;
+        padding: 9px 13px;
+        text-decoration: none;
+      }
+
+      .button.primary {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #fff;
+      }
+
+      .hero {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+        padding: 34px 0 42px;
+      }
+
+      h1 {
+        font-size: 54px;
+        line-height: 1.03;
+        margin: 0 0 18px;
+      }
+
+      .lead {
+        color: var(--muted);
+        font-size: 19px;
+        margin: 0;
+        max-width: 760px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .terminal {
+        background: #14191f;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        color: #e9eef4;
+        display: grid;
+        gap: 12px;
+        overflow: hidden;
+        padding: 18px;
+      }
+
+      .dotline {
+        display: flex;
+        gap: 7px;
+      }
+
+      .dot {
+        background: var(--line);
+        border-radius: 50%;
+        height: 10px;
+        width: 10px;
+      }
+
+      pre {
+        font-size: 13px;
+        margin: 0;
+        overflow-x: auto;
+        white-space: pre-wrap;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-bottom: 34px;
+      }
+
+      .tile,
+      .wide {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 20px;
+      }
+
+      h2 {
+        font-size: 18px;
+        margin: 0 0 8px;
+      }
+
+      p {
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .wide {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        margin-bottom: 34px;
+      }
+
+      .rules {
+        display: grid;
+        gap: 10px;
+      }
+
+      .rule {
+        border-left: 4px solid var(--accent);
+        padding: 6px 0 6px 12px;
+      }
+
+      .rule.safe {
+        border-color: var(--accent-2);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 13px;
+        padding: 24px 0 36px;
+      }
+
+      @media (max-width: 820px) {
+        .shell {
+          padding: 20px;
+        }
+
+        header,
+        .hero,
+        .wide {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        h1 {
+          font-size: 39px;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header>
+        <div class="brand">
+          <strong>XHS Readonly Monitor Lite</strong>
+          <span>Public-safe CDP monitor helpers</span>
+        </div>
+        <nav aria-label="Project links">
+          <a href="https://github.com/FireJW/xhs-readonly-monitor-lite">GitHub</a>
+          <a href="./security-and-privacy.html">Security</a>
+          <a href="./demo-runbook.html">Runbook</a>
+        </nav>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div>
+            <h1>Read-only social feed monitoring.</h1>
+            <p class="lead">
+              A narrow public extraction for inspecting feed cards and note
+              metrics through Chrome DevTools without publishing, commenting,
+              liking, favoriting, login management, or cookie handling.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="https://github.com/FireJW/xhs-readonly-monitor-lite">View repository</a>
+              <a class="button" href="https://github.com/FireJW/xhs-readonly-monitor-lite/blob/main/README.md">Read README</a>
+            </div>
+          </div>
+          <div class="terminal" aria-label="CLI example">
+            <div class="dotline">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <pre><code>$ xhs-readonly-monitor list-feeds --port 9222
+{
+  "feeds": [],
+  "tracked_count": 0,
+  "discovery_count": 0
+}</code></pre>
+          </div>
+        </section>
+
+        <section class="grid" aria-label="Capabilities">
+          <article class="tile">
+            <h2>Read-only by design</h2>
+            <p>The public package omits account-changing commands and exposes only state inspection helpers.</p>
+          </article>
+          <article class="tile">
+            <h2>Task-scoped tabs</h2>
+            <p>The monitor opens its own tab for a run and closes that tab during cleanup.</p>
+          </article>
+          <article class="tile">
+            <h2>Fixture tested</h2>
+            <p>Core parsing logic is covered with synthetic initial-state payloads.</p>
+          </article>
+        </section>
+
+        <section class="wide">
+          <div>
+            <h2>Extraction boundary</h2>
+            <p>
+              This repo demonstrates useful monitoring while keeping private
+              browser state and write-capable automation out of the public
+              package.
+            </p>
+          </div>
+          <div class="rules">
+            <p class="rule safe">Allowed: open a task tab, read page state, normalize metrics, close the task tab.</p>
+            <p class="rule">Excluded: login, cookies, publish, comment, reply, like, favorite, follow, or message actions.</p>
+            <p class="rule">Excluded: real account identifiers, sessions, private watchlists, and saved browser profiles.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        Built as a public-safe extraction from a broader private automation
+        codebase. Use synthetic fixtures for public demos.
+      </footer>
+    </div>
+  </body>
+</html>
