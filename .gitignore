@@ -2,11 +2,31 @@
 __pycache__/
 .pytest_cache/
 .ruff_cache/
+
+# Local scratch and generated artifacts
+.tmp/
+tmp/
 dist/
 build/
 *.egg-info/
 *.pyc
 output/
 reports/
+
+# Local browser/account state and live captures
+profiles/
+chrome-profile/
+user-data-dir/
+watchlist*.json
+tracked-posts*.json
+cookies*.json
+sessions*.json
+*.har
 *.jsonl
+
+# Environment and credentials
 .env
+.env.*
+*.local
+*.log
+logs/

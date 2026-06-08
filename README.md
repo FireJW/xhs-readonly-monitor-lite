@@ -109,6 +109,7 @@ This project was extracted from a broader private automation codebase into a sma
 - [Portfolio overview](https://firejw.github.io/xhs-readonly-monitor-lite/)
 - [Safety model](docs/security-and-privacy.md)
 - [Demo runbook](docs/demo-runbook.md)
+- [Demo transcript](docs/demo-transcript.md)
 
 ## License
 
